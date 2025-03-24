@@ -1,10 +1,10 @@
 package com.MovieService.MovieService.controller;
 
+import com.MovieService.MovieService.dto.AddMovieRequest;
 import com.MovieService.MovieService.model.Movie;
 import com.MovieService.MovieService.service.MovieService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +19,14 @@ public class MovieController {
     }
 
     @GetMapping("")
-    List<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movieService.getMovies();
     };
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addMovie(@RequestBody AddMovieRequest movieRequest) {
+        movieService.addMovie(movieRequest);
+        return ResponseEntity.ok("Added movie");
+    }
+
 }

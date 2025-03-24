@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "movies")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +16,10 @@ public class Movie {
 
     private String title;
     private String description;
+
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
 }
